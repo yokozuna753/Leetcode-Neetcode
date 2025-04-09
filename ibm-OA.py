@@ -1,20 +1,29 @@
 def getUpgradeTime(server_id, start_id, end_id):
     server_id_dict = {}
+    res = []
 
     for idx, ele in enumerate(server_id):
         server_id_dict[ele] = idx
 
     for i in range(len(start_id)):
         processing_times = []
-        prev = server_id_dict[start_id[i]]
-        print("PREV HERE: ", prev)
+        prev = start_id[i]
         for j in range(start_id[i], end_id[i] + 1):
-            # print(j)
-            pass
-    print(server_id_dict)
+            print("PREV HERE: ", prev)
+            if j == start_id[i]:
+                processing_times.append(1)
+            if server_id_dict[j] > server_id_dict[prev]:
+                processing_times.append(1)
+            elif server_id_dict[j] < server_id_dict[prev]:
+                processing_times.append(2)
+            prev = j
+        res.append(sum(processing_times))
+
+    print(res)
 
 
 getUpgradeTime(server_id=[1, 3, 4, 2, 5], start_id=[1, 2, 4], end_id=[5, 4, 5])
+getUpgradeTime(server_id=[5,3,2,6,1,4], start_id=[4,2,1], end_id=[6,3,3])
 
 # servers are organized in descending order of processing power
 # lower index server_id[0] == higher processing power
@@ -37,9 +46,9 @@ start_id=[1,2,4],
 end_id=  [5,4,5]
 
 range = 1,2,3,4,5
-i = 1
 1. store the elements in the server_id in a dict
 2. iterate through the length of start_id array
+    i = 1   
     - make a temp array to store the processing times (put this in the first loop, since the loops are nested)
     - make a range and loop through it for each start and end id[i]
     - store the idx of the previous server id in a var (default to first elements position) => 1 hr
