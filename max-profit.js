@@ -41,30 +41,42 @@ Constraints:
 //  L R
 
 
-const maxProfit = (prices) => {
-    // GOAL: get max profit between day(left) and day(right)
-    // max profit = R - L
-    // * no profit === day(left) > day(right)
-        // if left pointer is greater than right pointer, 
-            // move left pointer to right pointer, & right pointer one after left
-    // iterate over the array
-        // left pointer must be less than right pointer
-    // use left and right pointers
-    let left = prices[0];
-    let right = prices[left + 1];
-    let maxProf = 0;
-    // ...code for max prof
+maxProfit(prices) {
+    // if there is no transaction, the profit is 0
+        // make max profit variable to 0
+    // buy[i] < sell[i]
+    // left & right pointer
+    // left pointer must never cross right pointer
+    // if left[i] > right[i] => we found a smaller price than left
+        // move left pointer to right pointer position
+        // move right pointer + 1
+    // calculate the max profit
+        // profit is the max between:
+            // diff of right[i] - left[i] => make this new max profit
+    // move right pointer + 1
+    // return the max profit
+    let maxProfit = 0;
+
+    let left = 0;
+    let right = left + 1
+
     while(left < right){
-        if(prices[left] > prices[right]){
+        let priceLeft = prices[left];
+        let priceRight = prices[right];
+
+        if(priceLeft > priceRight){
             left = right;
-            right = left + 1
+            right += 1
             continue
         }
-        let currentProfit = prices[right] - prices[left];
-        maxProf = Math.max(maxProf, currentProfit);
-        right += 1
+        const diff = priceRight - priceLeft;
 
+
+        right += 1;
+        
+        if(right > prices.length) return maxProfit;
+
+        maxProfit = Math.max(diff, maxProfit);
     }
-
-    return maxProf;
+    return maxProfit;
 }
