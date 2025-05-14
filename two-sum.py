@@ -9,3 +9,6 @@ class Solution:
             hash_table[res_num] = i
 
 print(Solution.twoSum(nums = [3,4,5,6], target = 7))
+
+
+
