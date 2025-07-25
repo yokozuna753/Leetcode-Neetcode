@@ -16,25 +16,75 @@
     //! return false
 // return true
 
-function isAnagram(s, t) {
+// function isAnagram(s, t) {
 
-    if(s.length !== t.length) return false;
+//     if(s.length !== t.length) return false;
+
+//     const sortedS = s.split('').sort().join('');
+//     const sortedT = t.split('').sort().join('');
+
+//     for (let index = 0; index < s.length; index++) {
+
+//         const elementS = sortedS[index];
+//         const elementT = sortedT[index];
+
+//         if(elementS !== elementT) return false;
+//     }
+//     return true;
+// }
+
+// console.log(isAnagram(s = "racecar", t = "carrace"));
+// console.log(isAnagram(s = "jar", t = "jam"));
+
+
+// console.log("nuebca".split().sort().join());
+
+
+
+// ---------------- ---------------- July 25, 2025 ---------------- ---------------- 
+/*
+
+Given two strings s and t, return true if the two strings are anagrams of each other, otherwise return false.
+
+An anagram is a string that contains the exact same characters as another string, but the order of the characters can be different.
+
+Example 1:
+
+Input: s = "racecar", t = "carrace"
+
+Output: true
+Example 2:
+
+Input: s = "jar", t = "jam"
+
+Output: false
+
+GOAL => return true if string s
+and string t are anagrams of each other
+otherwise, return false
+
+- sort strings s and t
+- compare to one another and check if equal
+
+*/
+
+const isAnagram = (s, t) => {
+    if (s.length !== t.length) {
+        return false;
+    }
 
     const sortedS = s.split('').sort().join('');
     const sortedT = t.split('').sort().join('');
 
-    for (let index = 0; index < s.length; index++) {
-
-        const elementS = sortedS[index];
-        const elementT = sortedT[index];
-
-        if(elementS !== elementT) return false;
+    for (let i = 0; i < sortedS.length; i++) {
+        const letterS = sortedS[i];
+        const letterT = sortedT[i];
+        if (letterS !== letterT) {
+            return false;
+        }
     }
     return true;
 }
 
 console.log(isAnagram(s = "racecar", t = "carrace"));
 console.log(isAnagram(s = "jar", t = "jam"));
-
-
-// console.log("nuebca".split().sort().join());
