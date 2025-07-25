@@ -88,3 +88,22 @@ const isAnagram = (s, t) => {
 
 console.log(isAnagram(s = "racecar", t = "carrace"));
 console.log(isAnagram(s = "jar", t = "jam"));
+
+
+// Most Optimal solution - uses hash map
+function isAnagram(s, t) {
+    if (s.length !== t.length) return false;
+
+    const count = {};
+
+    for (let i = 0; i < s.length; i++) {
+        count[s[i]] = (count[s[i]] || 0) + 1; // increment count of letter in hash map for string s
+        count[t[i]] = (count[t[i]] || 0) - 1; // decrement count of letter in hash map for string t
+    }
+
+    for (let key in count) {
+        if (count[key] !== 0) return false;
+    }
+
+    return true;
+}
