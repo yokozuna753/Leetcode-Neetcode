@@ -63,7 +63,7 @@ function groupAnagrams(strs) {
     if (!res[key]) { // if there is NOT already a string with that character count in the array 
       res[key] = []; // add the character count as a key and an empty array as a value
     }
-    res[key].push(s); // if there is a key with the same character count, push the string to the array
+    res[key].push(s); // push the string to the array with the key that has the same character count
   }
   return Object.values(res); // return all of the subarrays together
 }
