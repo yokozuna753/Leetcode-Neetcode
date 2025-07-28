@@ -28,33 +28,89 @@ Output: [7]
     // push the current num into the res array
     // if the length of the res array is equal to k, return res array
 
+// function topKFrequent(nums, k) {
+//     const bucketArray = new Array(nums.length + 1).fill(0).map(_ => []);
+//     const hashMap = {};
+
+//     for(let num of nums){
+//         num in hashMap 
+//         ? hashMap[num] += 1
+//         : hashMap[num] = 1;
+//     }
+
+//     for(const [key, val] of Object.entries(hashMap)){
+//         bucketArray[val].push(parseInt(key))
+//     }
+
+//     const resArray = [];
+
+//     let i = bucketArray.length - 1;
+
+//     while(i > 0){
+//         const subArray = bucketArray[i];
+//         for(const num of subArray){
+//             resArray.push(num);
+//             if(resArray.length === k) return resArray;
+//         }
+//         i--;
+//     }
+// }
+
+
+//  ------ July 28, 2025
+
+/*
+
+Given an integer array nums and an integer k, return the k most frequent elements within the array.
+
+The test cases are generated such that the answer is always unique.
+
+You may return the output in any order.
+
+Example 1:
+
+Input: nums = [1,2,2,3,3,3], k = 2
+
+Output: [2,3]
+Example 2:
+
+Input: nums = [7,7], k = 1
+
+Output: [7]
+
+
+*/
+
 function topKFrequent(nums, k) {
-    const bucketArray = new Array(nums.length + 1).fill(0).map(_ => []);
-    const hashMap = {};
+    const res = [];
+    const frequencies = {};
 
-    for(let num of nums){
-        num in hashMap 
-        ? hashMap[num] += 1
-        : hashMap[num] = 1;
+    let i = 0;
+    while (i < nums.length) {
+        const curr = nums[i];
+        curr in frequencies 
+        ? frequencies[curr] += 1
+        : frequencies[curr] = 1
+        i++;
     }
-
-    for(const [key, val] of Object.entries(hashMap)){
-        bucketArray[val].push(parseInt(key))
+    const frequencyArray = new Array(nums.length + 1).fill(null).map(() => []);
+    for (let [int, freq] of Object.entries(frequencies)) {
+        frequencyArray[freq].push(parseInt(int));
     }
+    for(let i = frequencyArray.length - 1; i >= 0; i--) {
+        let subArray = frequencyArray[i];
 
-    const resArray = [];
-
-    let i = bucketArray.length - 1;
-
-    while(i > 0){
-        const subArray = bucketArray[i];
-        for(const num of subArray){
-            resArray.push(num);
-            if(resArray.length === k) return resArray;
+        for (let j = 0; j < frequencyArray[i].length; j++) {
+            const curr = subArray[j];
+            res.push(curr);
+            if(res.length === k) {
+                return res;
+            } 
         }
-        i--;
     }
+    return res;
 }
 
-// topKFrequent(nums = [1,2,2,3,3,3], k = 2)
-console.log(topKFrequent(nums = [7,7], k = 1));
+
+console.log(topKFrequent(nums = [1,2,2,3,3,3], k = 2)); // [2,3]
+console.log(topKFrequent(nums = [7,7], k = 1)); // [7]
