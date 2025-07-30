@@ -74,3 +74,63 @@ Output: [[-1,-1,2],[-1,0,1]]
 
 // threeSum([-1, 0, 1, 2, -1, -4]);
 
+// ------- july 30, 2025
+
+class Solution {
+    /**
+     * @param {number[]} nums
+     * @return {number[][]}
+     */
+    threeSum(nums) {
+        // indices are all distinct (input may be sorted)
+        // elemtents may have repeating values as long as they
+            // add up to 0
+        // first check if the sum is 0
+        // then move the pointers if the previous value is the same
+
+        /*
+
+        nums = [-1,0,1,2,-1,-4]
+                   i l
+                          r
+
+        */
+
+        // set i to first array element
+        // set left pointer to i + 1
+        // set right pointer to last array element
+        // loop while i < array length - 2 AND left and right dont cross
+        // check if the 3sum equals 0
+        // while the left pointer element equals the previous 
+        let res = [];  
+        nums.sort((a, b) => a - b);
+        let i = 0;
+
+
+        while(i < nums.length) {
+            let l = i + 1;
+            let r = nums.length - 1;
+            let curr = nums[i];
+            let prev = nums[i - 1];
+            if(i > 0 && curr === prev) {
+                i++;
+                continue
+            }
+            while (l < r) {
+                const sum = nums[i] + nums[l] + nums[r];
+                if (sum === 0) {
+                    res.push([nums[i] , nums[l] , nums[r]]);
+                    while(l < r && nums[l] === nums[l + 1]) l++;
+                    while(l < r && nums[r] === nums[r - 1]) r--;
+                    l++;
+                    r--;
+                } 
+                else if (sum < 0) l++;
+                else r--;
+            }
+            i++;
+        }
+        return res;
+
+    }
+}
