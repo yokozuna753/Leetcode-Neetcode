@@ -44,26 +44,25 @@ Output: [1,1,2,3,4,5]
 //     return dummy.next;
 // }
 
+function mergeTwoLists(list1, list2) {
+  let dummy = new ListNode();
+  let tail = dummy;
 
-    mergeTwoLists(list1, list2) {
-        let dummy = new ListNode();
-        let tail = dummy;
-
-        while (list1 && list2) {
-            // console.log(tail);
-            if (list1.val < list2.val) {
-                tail.next = list1;
-                list1 = list1.next;
-            } else {
-                tail.next = list2;
-                list2 = list2.next;
-            }
-            tail = tail.next;
-        }
-        if (list1){
-            tail.next = list1;
-        } else if (list2) {
-            tail.next = list2;
-        }
-        return dummy.next;
+  while (list1 && list2) {
+    // console.log(tail);
+    if (list1.val < list2.val) {
+      tail.next = list1;
+      list1 = list1.next;
+    } else {
+      tail.next = list2;
+      list2 = list2.next;
     }
+    tail = tail.next;
+  }
+  if (list1) {
+    tail.next = list1;
+  } else if (list2) {
+    tail.next = list2;
+  }
+  return dummy.next;
+}
