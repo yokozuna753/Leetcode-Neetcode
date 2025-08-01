@@ -46,3 +46,8 @@ Output: ""
         // ! if they are not:
             // move the right pointer up until they are
 // return the values of the min key in the result hashmap
+
+
+let arr = new Array(1000);
+arr[999] = "foo";
+console.log(0 / 2);
