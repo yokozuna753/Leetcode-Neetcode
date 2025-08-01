@@ -98,32 +98,63 @@
 //   curr = curr.next;
 // }
 
+// function reorderList(head) {
+//   let nodes = [];
+//   let curr = head;
+//   while (curr) {
+//     nodes.push(curr);
+//     curr = curr.next;
+//   }
+//   /* [ 2, 4, 6, 8 ]
+//            [ 2, 4, 6, 8, 10 ]
+//                    i
+//                    j
+//             2->10->4->8->6
+//             add node at i
+//             add node at j to i's next
+//         // let mid = Math.ceil(tempArray.length / 2);
+//         */
+
+//   let i = 0,
+//     j = nodes.length - 1;
+
+//   while (i < j) {
+//     nodes[i].next = nodes[j];
+//     i++;
+//     nodes[j].next = nodes[i];
+//     j--;
+//   }
+
+//   nodes[i].next = null;
+// }
+
+// ------ in place solution
+
 function reorderList(head) {
-  let nodes = [];
-  let curr = head;
-  while (curr) {
-    nodes.push(curr);
-    curr = curr.next;
-  }
-  /* [ 2, 4, 6, 8 ]
-           [ 2, 4, 6, 8, 10 ]
-                   i
-                   j
-            2->10->4->8->6
-            add node at i
-            add node at j to i's next
-        // let mid = Math.ceil(tempArray.length / 2);
-        */
-
-  let i = 0,
-    j = nodes.length - 1;
-
-  while (i < j) {
-    nodes[i].next = nodes[j];
-    i++;
-    nodes[j].next = nodes[i];
-    j--;
+  let slow = head;
+  let fast = head.next;
+  while (fast !== null && fast.next !== null) {
+    slow = slow.next;
+    fast = fast.next.next;
   }
 
-  nodes[i].next = null;
+  let second = slow.next;
+  let prev = (slow.next = null);
+  while (second !== null) {
+    const tmp = second.next;
+    second.next = prev;
+    prev = second;
+    second = tmp;
+  }
+
+  let first = head;
+  second = prev;
+  while (second !== null) {
+    const tmp1 = first.next;
+    const tmp2 = second.next;
+    first.next = second;
+    second.next = tmp1;
+    first = tmp1;
+    second = tmp2;
+  }
 }
