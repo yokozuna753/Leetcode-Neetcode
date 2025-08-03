@@ -130,31 +130,76 @@
 
 // ------ in place solution
 
-function reorderList(head) {
-  let slow = head;
-  let fast = head.next;
-  while (fast !== null && fast.next !== null) {
-    slow = slow.next;
-    fast = fast.next.next;
-  }
+// function reorderList(head) {
+//   let slow = head;
+//   let fast = head.next;
+//   while (fast !== null && fast.next !== null) {
+//     slow = slow.next;
+//     fast = fast.next.next;
+//   }
 
-  let second = slow.next;
-  let prev = (slow.next = null);
-  while (second !== null) {
-    const tmp = second.next;
-    second.next = prev;
-    prev = second;
-    second = tmp;
-  }
+//   let second = slow.next;
+//   let prev = (slow.next = null);
+//   while (second !== null) {
+//     const tmp = second.next;
+//     second.next = prev;
+//     prev = second;
+//     second = tmp;
+//   }
 
-  let first = head;
-  second = prev;
-  while (second !== null) {
-    const tmp1 = first.next;
-    const tmp2 = second.next;
-    first.next = second;
-    second.next = tmp1;
-    first = tmp1;
-    second = tmp2;
-  }
+//   let first = head;
+//   second = prev;
+//   while (second !== null) {
+//     const tmp1 = first.next;
+//     const tmp2 = second.next;
+//     first.next = second;
+//     second.next = tmp1;
+//     first = tmp1;
+//     second = tmp2;
+//   }
+// }
+
+
+
+// ----- recursive solution
+
+class Solution {
+    /**
+     * @param {ListNode} head
+     * @return {void}
+     */
+    reorderList(head) {
+        head = this.rec(head, head.next);
+    }
+
+    /**
+     * @param {ListNode} root
+     * @param {ListNode} cur
+     * @return {ListNode}
+     */
+    rec(root, cur) {
+        if (cur === null) {
+            return root;
+        }
+
+        root = this.rec(root, cur.next);
+        if (root === null) {
+            return null;
+        }
+
+        let tmp = null;
+        if (root === cur || root.next === cur) {
+            cur.next = null;
+        } else {
+            tmp = root.next;
+            root.next = cur;
+            cur.next = tmp;
+        }
+
+        return tmp;
+    }
 }
+
+
+
+const solution = new Solution();
