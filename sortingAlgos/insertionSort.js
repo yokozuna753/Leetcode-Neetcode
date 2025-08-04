@@ -5,6 +5,9 @@
 //  j 
 //      i
 
+// O(n^2) average & worst case time complexity
+// O(1) space complexity
+
 function insertionSort(array) {
     
     for (let i = 0; i < array.length; i++) {
