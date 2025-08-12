@@ -89,3 +89,4 @@ mergeSort(arr);
 for (let num of arr) {
     console.log(num);
 }
+
