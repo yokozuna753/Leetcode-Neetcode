@@ -41,7 +41,7 @@ Constraints:
 //  L R
 
 
-maxProfit(prices) {
+function maxProfit(prices) {
     // if there is no transaction, the profit is 0
         // make max profit variable to 0
     // buy[i] < sell[i]
