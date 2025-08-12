@@ -51,11 +51,13 @@ NOTE: CAN ONLY REPLACE ">" with "<>"
 function balancedBrackets(bracketArray, maxReplacements) {
     const res = [];
     
-    for (let i = 0; i < bracketArray.length; i++) {
+    outer: for (let i = 0; i < bracketArray.length; i++) {
         const currString = bracketArray[i];
         let currReplacements = 0;
         let stack = [];
-        for (let c = 0; c < currString.length; c++) {
+
+        inner: for (let c = 0; c < currString.length; c++) {
+
             const char = currString[c];
 
             if(char === "<") stack.push(char);
@@ -66,7 +68,7 @@ function balancedBrackets(bracketArray, maxReplacements) {
         }
         if(stack.length ) {
             res.push(0);
-            continue;
+            continue outer;
         } 
         else currReplacements <= maxReplacements[i] ? res.push(1) : res.push(0);
     }
