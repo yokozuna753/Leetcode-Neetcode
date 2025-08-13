@@ -20,7 +20,7 @@ class Solution:
         self.invertTreeDFS(root.left)
         self.invertTreeDFS(root.right)
 
-        return root
+        return root 
 
     def invertTreeBFS(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         # we'll use a queue to push nodes onto it at each level
