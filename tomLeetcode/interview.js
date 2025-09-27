@@ -116,13 +116,13 @@ const noConflicts = (f, c) => {
     // return dummy;
 }
 
-console.log(noConflicts('unicorns.png', ['unicorns.png']));
-console.log(noConflicts('unicorns.png', ['unicorns.png']));
-console.log(noConflicts('unicorns(1).png', ['unicorns(1).png']));
-console.log(noConflicts(
-    f = 'unicorns.png', 
-    c = ['unicorns.png', 'unicorns(1).png', 'unicorns(1)(1).png', 'unicorns(2).png', 'unicorns(2)(1).png', 'unicorns(5).png'])
-); // unicorns(3).png
+// console.log(noConflicts('unicorns.png', ['unicorns.png']));
+// console.log(noConflicts('unicorns.png', ['unicorns.png']));
+// console.log(noConflicts('unicorns(1).png', ['unicorns(1).png']));
+// console.log(noConflicts(
+//     f = 'unicorns.png', 
+//     c = ['unicorns.png', 'unicorns(1).png', 'unicorns(1)(1).png', 'unicorns(2).png', 'unicorns(2)(1).png', 'unicorns(5).png'])
+// ); // unicorns(3).png
 
 
-// console.log('HERE => ', ['unicorns(1).png','unicorns.png', 'unicorns(5).png', 'unicorns(2).png', 'unicorns(10).png'].sort((a, b) => a - b));
+console.log('HERE => ', ['unicorns(1).png','unicorns.png', 'unicorns(5).png', 'unicorns(2).png', 'unicorns(10).png'].sort((a, b) => a.localeCompare(a, 'en', {numeric: true})));
